@@ -24,7 +24,6 @@ function CartDAO(database) {
 
     this.db = database;
 
-
     this.getCart = function(userId, callback) {
         "use strict";
 

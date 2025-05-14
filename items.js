@@ -53,16 +53,20 @@ function ItemDAO(database) {
         */
 
         var category = {
-            _id: "All",
-            num: 9999
+          _id: "All",
+          num: 9999,
         };
-
-        this.db.collection("item").aggregate({'$group':{'_id':'$category','num':{'$sum':1}}},{'$sort':{_id:1}})
-        .toArray(function(err, categories) {
-            assert.equal(null, err);
+        const cat = this.db
+          .collection("item")
+          .aggregate(
+            { $group: { _id: "$category", num: { $sum: 1 } } },
+            { $sort: { _id: 1 } }
+          )
+          .toArray(function (err, categories) {
+            // assert.equal(null, err);
             categories.push(category);
             callback(categories);
-        });
+          });
 
         // TODO-lab1A Replace all code above (in this method).
 
